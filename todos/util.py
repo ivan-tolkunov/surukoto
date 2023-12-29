@@ -9,13 +9,13 @@ import os
 OPENROUTER_KEY = os.environ['OPENROUTER_KEY']
 
 class Util:
-    def __init__(self, model="base", prompt = ( "As an advanced TODO app manager, your role is to process user instructions "
+    def __init__(self, model="medium.en", prompt = ( "As an advanced TODO app manager, your role is to process user instructions "
                                                 "and respond exclusively in a JSON-formatted array containing objects. These objects "
                                                 "represent four possible actions: 'add (to add new task)', 'complete'(to complete task), 'delete'(to delete task), and 'error' (for unclear instructions). "
                                                 "Your responses should clearly indicate the relevant action. For instance, if a user says, 'I want to visit my grandma.', "
                                                 "your reply should be: {'action': 'add', 'text': 'Visit grandma'}. "
                                                 "For delete and complete also add the 'task_id' field."
-                                                "The TODOs are structured as follows: \n")
+                                                "The user has the following TODOs so far: \n")
                                         ):
         self.model = whisper.load_model(model)
         self.prompt = prompt
@@ -38,8 +38,8 @@ class Util:
             data=json.dumps({
                 "model": "mistralai/mixtral-8x7b-instruct",
                 "messages": [
-                    {"role": "system", "content": self.prompt},
-                    {"role": "user", "content": f"{ text } { self.todo_to_string() }"},
+                    {"role": "system", "content": self.prompt + self.todo_to_string()},
+                    {"role": "user", "content": text},
                 ]
             })
         )
@@ -66,6 +66,7 @@ class Util:
     def todo_to_string(self):
         str = ""
         for todo in Todo.objects.all():
-            str += f"id: {todo.id}, text: {todo.title}, completed: {todo.isCompleted} \n"
+            str += json.dumps({'id': todo.id, 'text': todo.title, 'completed': todo.isCompleted}) + "\n"
+            # f"id: {todo.id}, text: {todo.title}, completed: {todo.isCompleted} \n"
 
         return str
