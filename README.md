@@ -2,7 +2,7 @@
 
 A todo app with voice controll
 
-![todo App](surukoto.jpeg)
+![todo App](staticfiles/surukoto.jpeg)
 
 ### Setup
 
