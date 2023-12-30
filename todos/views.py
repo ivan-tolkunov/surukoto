@@ -14,12 +14,6 @@ class IndexView(generic.ListView):
         """Return all the latest todos."""
         return Todo.objects.order_by('-created_at')
 
-def add(request):
-    title = request.POST['title']
-    Todo.objects.create(title=title)
-
-    return redirect('todos:index')
-
 def process_voice_command(request):
     audio_file = request.FILES.get('audio_file', None)
     text = util.get_voice_text(audio_file)
@@ -39,19 +33,6 @@ def process_voice_command(request):
 
     return redirect('todos:index')
 
-def delete(request, todo_id):
-    todo = get_object_or_404(Todo, pk=todo_id)
-    todo.delete()
-
-    return redirect('todos:index')
-
 def update(request, todo_id):
-    todo = get_object_or_404(Todo, pk=todo_id)
-    isCompleted = request.POST.get('isCompleted', False)
-    if isCompleted == 'on':
-        isCompleted = True
-    
-    todo.isCompleted = isCompleted
-
-    todo.save()
+    util.complete(todo_id)
     return redirect('todos:index')

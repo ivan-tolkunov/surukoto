@@ -67,6 +67,5 @@ class Util:
         str = ""
         for todo in Todo.objects.all():
             str += json.dumps({'id': todo.id, 'text': todo.title, 'completed': todo.isCompleted}) + "\n"
-            # f"id: {todo.id}, text: {todo.title}, completed: {todo.isCompleted} \n"
-
+            
         return str

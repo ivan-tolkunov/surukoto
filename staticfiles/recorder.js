@@ -3,8 +3,11 @@ const recordButton = document.getElementById('record');
 let recorder = null;
 
 recordButton.onclick = async () => {
+    if (recordButton.classList[1] == "palette-5") {
+        return;
+    }
     if (recorder) {
-        recordButton.innerText = 'Record';
+        recordButton.classList = 'blobs palette-5';
         recorder.stop();
         recorder = null;
         return;
@@ -16,7 +19,7 @@ recordButton.onclick = async () => {
     recorder = new MediaRecorder(stream);
     recorder.ondataavailable = e => chunks.push(e.data);
     recorder.onstop = async () => {
-        recordButton.innerText = 'Sending...';
+        recordButton.classList = 'blobs palette-5';
         const blob = new Blob(chunks, {'type': 'audio/webm;'});
         const formData = new FormData();
         formData.append('audio_file', blob, "voice-command.webm");
@@ -29,10 +32,9 @@ recordButton.onclick = async () => {
         const data = await response.text();
         window.location.reload();
         console.log(data);
-        recordButton.innerText = 'Done!';
     };
 
-    recordButton.innerText = 'Stop';
+    recordButton.classList = 'blobs palette-2';
     recorder.start();
 };
 
