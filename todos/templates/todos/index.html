@@ -13,7 +13,6 @@
   </div>
 
   <div class="row">
-    <!-- <div class="offset-md-2 col-lg-6"> -->
       <div class="list-group">
         {% for todo in todo_list %}
         <div class="list-group-item {% if todo.isCompleted %} todo-complete {% endif %}">
@@ -26,39 +25,95 @@
           {{ todo.title }}
         </div>
         {% endfor %}
-      <!-- </div> -->
     </div>
   </div>
-    
   <div class="sphere">
     <div class="blobs" id="record">
       <svg viewbox="0 0 1200 1200">
-          <g class="blob blob-1">
-              <path />
-          </g>
-          <g class="blob blob-2">
-              <path />
-          </g>
-          <g class="blob blob-3">
-              <path />
-          </g>
-          <g class="blob blob-4">
-              <path />
-          </g>
-          <g class="blob blob-1 alt">
-              <path />
-          </g>
-          <g class="blob blob-2 alt">
-              <path />
-          </g>
-          <g class="blob blob-3 alt">
-              <path />
-          </g>
-          <g class="blob blob-4 alt">
-              <path />
-          </g>
-      </svg>
+        <defs>
+          <filter id="blurFilter1" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="70" />
+          </filter>
+          <filter id="blurFilter2" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
+          </filter>
+          <filter id="blurFilter3" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+          </filter>
+          <filter id="blurFilter4" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="200" />
+          </filter>
+
+        </defs>
+        <g class="blob blob-1">
+        <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
+        filter="url(#blurFilter1)">
+            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+                     values="M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z;
+                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                             M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                             M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                             M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z"/>
+        </path>
+        </g>
+        <g class="blob blob-2">
+          <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
+          filter="url(#blurFilter2)">
+              <animate attributeName="d" dur="7s" repeatCount="indefinite"
+                       values="M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                       M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                       M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                       M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                       M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                       M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                       M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z
+                       "/>
+          </path>
+        </g>
+        <g class="blob blob-3">
+          <path d="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z"
+          filter="url(#blurFilter3)">
+            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+                     values="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z"/>
+          </path>
+        </g>
+        <g class="blob blob-4">
+          <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
+          filter="url(#blurFilter4)"
+          >
+            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+                     values="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z
+                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"/>
+          </path>
+        </g>
+    </svg>
     </div>
   </div>
 </div>
 {% endblock %}
+
+0% {
+  d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
+}
+40% {
+  d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+}
+80% {
+  d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+}
+100% {
+  d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+}

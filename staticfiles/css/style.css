@@ -24,3 +24,14 @@ body {
     width: 300px;
   }
 }
+
+#ivan {
+  width: 100px;
+  height: 100px;
+  background: red;
+  filter: blur(1rem);
+}
+
+#xxx {
+  filter: blur(1rem);
+}

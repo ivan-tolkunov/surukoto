@@ -26,6 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '192.168.1.101',
     'ivan-tolkunov--surukoto-run-dev.modal.run',
     'ivan-tolkunov--surukoto-run.modal.run',
     'localhost',

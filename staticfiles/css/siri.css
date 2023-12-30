@@ -86,7 +86,6 @@ body {
 }
 .blobs .blob-1 path {
   fill: var(--blob-1);
-  filter: blur(1rem);
 }
 .blobs .blob-2 {
   animation-duration: 18s;
@@ -96,7 +95,6 @@ body {
   fill: var(--blob-2);
   animation-name: blob-anim-2;
   animation-duration: 7s;
-  filter: blur(0.75rem);
   transform: scale(0.78);
 }
 .blobs .blob-2.alt {
@@ -109,7 +107,6 @@ body {
   fill: var(--blob-3);
   animation-name: blob-anim-3;
   animation-duration: 6s;
-  filter: blur(0.5rem);
   transform: scale(0.76);
 }
 .blobs .blob-4 {
@@ -121,69 +118,13 @@ body {
   fill: var(--blob-4);
   animation-name: blob-anim-4;
   animation-duration: 10s;
-  filter: blur(10rem);
   transform: scale(0.5);
 }
 .blobs .blob-4.alt {
   animation-direction: alternate;
   opacity: 0.8;
 }
-@keyframes blob-anim-1 {
-  0% {
-    d: path("M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z");
-  }
-  30% {
-    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-  }
-  70% {
-    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-  100% {
-    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-  }
-}
-@keyframes blob-anim-2 {
-  0% {
-    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-  40% {
-    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-  }
-  80% {
-    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-  }
-  100% {
-    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-}
-@keyframes blob-anim-3 {
-  0% {
-    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-  }
-  35% {
-    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-  }
-  75% {
-    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-  100% {
-    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-}
-@keyframes blob-anim-4 {
-  0% {
-    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-  }
-  30% {
-    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
-  }
-  70% {
-    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-  }
-  100% {
-    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-  }
-}
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);

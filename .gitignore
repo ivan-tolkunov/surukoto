@@ -61,5 +61,3 @@ target/
 
 .DS_Store
 .env
-
-modal_app.py
