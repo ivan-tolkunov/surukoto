@@ -1,4 +1,5 @@
 const recordButton = document.getElementById('record');
+const recordButtonText = document.getElementById('record-text');
 
 let recorder = null;
 
@@ -7,6 +8,7 @@ recordButton.onclick = async () => {
         return;
     }
     if (recorder) {
+        recordButtonText.innerHTML = 'Processing...';
         recordButton.classList = 'blobs palette-5';
         recorder.stop();
         recorder = null;
@@ -34,6 +36,7 @@ recordButton.onclick = async () => {
         console.log(data);
     };
 
+    recordButtonText.innerHTML = 'Recording...';
     recordButton.classList = 'blobs palette-2';
     recorder.start();
 };

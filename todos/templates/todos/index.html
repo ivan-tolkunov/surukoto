@@ -5,24 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="position-absolute todo-div">
+<div class="todo-div">
   <div class="page-header">
-    <h1>
-      Surukoto
-    </h1>
+    <h5 style="text-align: center;">🌟 Welcome to the Surukoto! 👾</h5>
+    <br>
   </div>
-
   <div class="row">
       <div class="list-group">
         {% for todo in todo_list %}
         <div class="list-group-item {% if todo.isCompleted %} todo-complete {% endif %}">
           <form style="display: inline;" method="post" action="{% url 'todos:update' todo.id %}">
             {% csrf_token %}
-            <input type="checkbox" name="isCompleted" onchange="this.form.submit()" {% if todo.isCompleted %} checked
+            <input style="margin-right: 8px;" type="checkbox" name="isCompleted" onchange="this.form.submit()" {% if todo.isCompleted %} checked
               {% endif %} class="todo-status-checkbox"
               title="{% if not todo.isCompleted %} mark as done {% else %} mark undone {% endif %}">
           </form>
-          {{ todo.title }}
+          {% if todo.isCompleted %} <s>{{ todo.title }}</s> {% else %} {{ todo.title }} {% endif %}
         </div>
         {% endfor %}
     </div>
@@ -32,88 +30,137 @@
       <svg viewbox="0 0 1200 1200">
         <defs>
           <filter id="blurFilter1" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="70" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
           </filter>
           <filter id="blurFilter2" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
           </filter>
           <filter id="blurFilter3" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="20" />
           </filter>
           <filter id="blurFilter4" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="200" />
           </filter>
-
         </defs>
         <g class="blob blob-1">
-        <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
-        filter="url(#blurFilter1)">
-            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+          <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
+          filter="url(#blurFilter1)">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite"
                      values="M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z;
                              M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
                              M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
                              M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
                              M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
                              M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
-                             M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z"/>
-        </path>
+                             M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z;
+                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"/>
+          </path>
         </g>
         <g class="blob blob-2">
           <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
           filter="url(#blurFilter2)">
-              <animate attributeName="d" dur="7s" repeatCount="indefinite"
+              <animate attributeName="d" dur="8s" repeatCount="indefinite"
                        values="M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
                        M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
                        M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
                        M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
                        M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
                        M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
-                       M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z
+                       M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                       M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z
                        "/>
           </path>
         </g>
         <g class="blob blob-3">
-          <path d="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z"
-          filter="url(#blurFilter3)">
-            <animate attributeName="d" dur="7s" repeatCount="indefinite"
-                     values="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
-                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
-                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
-                             M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z;
-                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
-                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
-                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z"/>
+          <path d="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z" filter="url(#blurFilter3)">
+              <animate attributeName="d" dur="7s" repeatCount="indefinite"
+                       values="M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
+                               M 125 600 q -25 -500, 500 -500 t 475 550 t -500 500 T 125 600 z;
+                               M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
+                               M 125 600 q 50 -600, 500 -500 t 425 500 t -500 500 T 125 600 z;
+                               M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
+                               M 75 600 q 50 -600, 500 -500 t 425 500 t -500 500 T 75 600 z;
+                               M 50 600 q 0 -600, 500 -500 t 450 550 t -500 500 T 50 600 z;
+                               M 75 600 q -25 -500, 500 -500 t 475 550 t -500 500 T 75 600 z;
+                               M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z"/>
           </path>
-        </g>
+        </g>      
         <g class="blob blob-4">
           <path d="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"
           filter="url(#blurFilter4)"
           >
-            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+            <animate attributeName="d" dur="8s" repeatCount="indefinite"
                      values="M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z;
                              M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
                              M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
-                             M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z
-                             M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z;
-                             M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z;
                              M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z"/>
           </path>
         </g>
-    </svg>
+      </svg>
+      <div id="record-text">
+        Record
+      </div>
     </div>
   </div>
+  <div style="margin-top: 70px; text-align: left; font-family: Arial, sans-serif;">
+    <div id="shortContent">
+      <h5 style="text-align: center;">📔 How to use 🗿</h5>
+      <br>
+      <p>🎤 <strong>Speak Your Tasks into Existence!</strong> Simply say what's on your mind, like: "Remind me to feed my dog at 6 PM."</p>
+    </div>
+    
+    <button id="readMoreBtn">Read More</button>
+    
+    <div id="extraContent" style="display: none;">
+      <p>🌈 <strong>Add a Splash of Color!</strong> Get creative with your to-do lists: "Create a to-do list in shades of sunset."</p>
+      <p>🔮 <strong>Color Quest!</strong> Challenge yourself: "Complete all tasks in hues of lavender."</p>
+      <p>⏳ <strong>Time Traveler's Edit!</strong> Changed your mind? No problem: "Delete tasks created in the last 2 minutes."</p>
+      <p>✨ <strong>Unleash Your Creativity!</strong> There's no limit to what you can do: "Set up a to-do list following my quirky instructions."</p>
+      <p>🌟 <strong>Your Imagination is the Limit!</strong> Think outside the box and watch your tasks come to life!</p>
+      <p>🚀 <strong>Just a heads-up:</strong> This is a demo version, so your to-dos will refresh every 5 minutes. It's the perfect playground to experiment with your wildest ideas and see them in action!</p>
+    </div>
+    <button id="readLessBtn" style="display: none;">Read Less</button>
+    </div>
 </div>
-{% endblock %}
 
-0% {
-  d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
-}
-40% {
-  d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
-}
-80% {
-  d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-}
-100% {
-  d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
-}
+{% if messages %}
+{% for message in messages %}
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endif %}
+
+<script>
+  const readMoreBtn = document.getElementById('readMoreBtn');
+  const readLessBtn = document.getElementById('readLessBtn');
+  const extraContent = document.getElementById('extraContent');
+
+  readMoreBtn.onclick = () => {
+    extraContent.style.display = 'block';
+    readMoreBtn.style.display = 'none';
+    readLessBtn.style.display = 'block';
+  }
+  readLessBtn.onclick = () => {
+    extraContent.style.display = 'none';
+    readLessBtn.style.display = 'none';
+    readMoreBtn.style.display = 'block';
+  }
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function (toastEl) {
+    return new bootstrap.Toast(toastEl, { autohide: false })
+  })
+  toastList.forEach(t => t.show());
+
+</script>
+{% endblock %}

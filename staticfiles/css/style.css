@@ -2,11 +2,11 @@ body {
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  height: 100vh; 
   text-align: center;
 }
 
 .todo-div {
+  margin-top: 100px;
   width: 400px;
 }
 

@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from django.views import generic
 from .models import Todo
 from .util import Util
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+
 
 util = Util()
 
@@ -19,19 +22,20 @@ def process_voice_command(request):
     text = util.get_voice_text(audio_file)
     commands = util.get_command(text)
     print(text)
+    print(commands)
     for command in commands:
         match command['action']:
             case "add":
                 util.add(command['text'])
-                print("Added: " + command['text'])
             case "complete":
                 util.complete(command['task_id'])
             case "delete":
                 util.delete(command['task_id'])
             case "error":
-                print("error")
+                print("error", command['text'])
+                messages.add_message(request, messages.ERROR, command['text'])
 
-    return redirect('todos:index')
+    return JsonResponse({'success': True})
 
 def update(request, todo_id):
     util.complete(todo_id)
