@@ -21,19 +21,18 @@ def process_voice_command(request):
     audio_file = request.FILES.get('audio_file', None)
     text = util.get_voice_text(audio_file)
     commands = util.get_command(text)
-    print(text)
-    print(commands)
     for command in commands:
-        match command['action']:
-            case "add":
-                util.add(command['text'])
-            case "complete":
-                util.complete(command['task_id'])
-            case "delete":
-                util.delete(command['task_id'])
-            case "error":
-                print("error", command['text'])
-                messages.add_message(request, messages.ERROR, command['text'])
+        action = command['action']
+        if action == "add":
+            util.add(command['text'])
+        elif action == "complete":
+            util.complete(command['task_id'])
+        elif action == "delete":
+            util.delete(command['task_id'])
+        elif action == "error":
+            messages.add_message(request, messages.ERROR, command['text'])
+        else:
+            print("Unknown action")
 
     return JsonResponse({'success': True})
 

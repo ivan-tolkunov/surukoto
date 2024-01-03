@@ -11,7 +11,8 @@ OPENROUTER_KEY = os.environ['OPENROUTER_KEY']
 class Util:
     def __init__(self, model="medium.en", prompt = ( "As an advanced TODO app manager, your role is to process user instructions "
                                                 "and respond exclusively in a JSON-formatted array containing objects. These objects "
-                                                "represent four possible actions: 'add (to add new task)', 'complete'(to complete task), 'delete'(to delete task), and 'error' (with explanation in the 'text' field and example of a better command). "
+                                                "represent four possible actions: 'add (to add new task)', 'complete'(to complete task), 'delete'(to delete task), and 'error' (with explanation in the 'text' field and example of a better command, should be same JSON-formatted). "
+                                                "If something is unclear or not looks like todo, you can ask the user to repeat as an error action."
                                                 "Your responses should clearly indicate the relevant action. For instance, if a user says, 'I want to visit my grandma.', "
                                                 "your reply should be: {'action': 'add', 'text': 'Visit grandma'}. "
                                                 "For delete and complete also add the 'task_id' field."
@@ -27,6 +28,7 @@ class Util:
         audio = whisper.pad_or_trim(audio)
         result = self.model.transcribe("media/" + file_name)
         default_storage.delete(file_name)
+        print(result["text"].strip())
         return result["text"].strip()
     
     def get_command(self, text):
@@ -43,7 +45,7 @@ class Util:
                 ]
             })
         )
-
+        print(response.json()["choices"][0]["message"]["content"])
         return json.loads(response.json()["choices"][0]["message"]["content"])
     
     def add(self, text):
