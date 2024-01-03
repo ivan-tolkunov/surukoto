@@ -7,8 +7,8 @@
 {% block content %}
 <div class="todo-div">
   <div class="page-header">
-    <h5 style="text-align: center;">🌟 Welcome to the Surukoto! 👾</h5>
-    <br>
+    <h1 style="text-align: center;">Surukoto</h1>
+    <p style="text-align: center;">Voice-Powered Task Management!</p>
   </div>
   <div class="row">
       <div class="list-group">
@@ -20,7 +20,7 @@
               {% endif %} class="todo-status-checkbox"
               title="{% if not todo.isCompleted %} mark as done {% else %} mark undone {% endif %}">
           </form>
-          {% if todo.isCompleted %} <s>{{ todo.title }}</s> {% else %} {{ todo.title }} {% endif %}
+          {% if todo.isCompleted %} <s><em>{{ todo.title }}</em></s> {% else %} {{ todo.title }} {% endif %}
         </div>
         {% endfor %}
     </div>
@@ -98,28 +98,29 @@
         </g>
       </svg>
       <div id="record-text">
-        Record
+        Click and Start Talking
       </div>
     </div>
   </div>
   <div style="margin-top: 70px; text-align: left; font-family: Arial, sans-serif;">
     <div id="shortContent">
-      <h5 style="text-align: center;">📔 How to use 🗿</h5>
+      <h5 style="text-align: center;">Try this</h5>
       <br>
-      <p>🎤 <strong>Speak Your Tasks into Existence!</strong> Simply say what's on your mind, like: "Remind me to feed my dog at 6 PM."</p>
+      <p>📝 Finish the blog post</p>
+      <p>🛒 Remind me to buy milk, bread, and sugar</p>
     </div>
     
-    <button id="readMoreBtn">Read More</button>
+    <button id="readMoreBtn">More examples</button>
     
     <div id="extraContent" style="display: none;">
-      <p>🌈 <strong>Add a Splash of Color!</strong> Get creative with your to-do lists: "Create a to-do list in shades of sunset."</p>
-      <p>🔮 <strong>Color Quest!</strong> Challenge yourself: "Complete all tasks in hues of lavender."</p>
-      <p>⏳ <strong>Time Traveler's Edit!</strong> Changed your mind? No problem: "Delete tasks created in the last 2 minutes."</p>
-      <p>✨ <strong>Unleash Your Creativity!</strong> There's no limit to what you can do: "Set up a to-do list following my quirky instructions."</p>
-      <p>🌟 <strong>Your Imagination is the Limit!</strong> Think outside the box and watch your tasks come to life!</p>
-      <p>🚀 <strong>Just a heads-up:</strong> This is a demo version, so your to-dos will refresh every 5 minutes. It's the perfect playground to experiment with your wildest ideas and see them in action!</p>
+      <p>🥛 I bought everything except milk</p>
+      <p>🌟 Schedule gym session for 6 PM</p>
+      <p>📅 Set up meeting with the design team</p>
+      <p>📖 I read Chapter 4 of 'Innovative Mindsets', and tommorow I want to read Chapter 5</p>
+      <p>✔️ Clean up completed items</p>
+      <p>➕ Duplicate every todo item and add 'tomorrow' to the end</p>
     </div>
-    <button id="readLessBtn" style="display: none;">Read Less</button>
+    <button id="readLessBtn" style="display: none;">Less examples</button>
     </div>
 </div>
 
@@ -128,9 +129,7 @@
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
       <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
+        <strong class="me-auto">Something not good 🗿</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">

@@ -30,5 +30,15 @@ stub = Stub(name="surukoto", image=image)
 @wsgi_app()
 def run():
     from todoApp.wsgi import application
+    from todos.models import Todo  
+    from django.db import transaction
+
+    with transaction.atomic():
+        Todo.objects.create(title="Visit grandma")
+        Todo.objects.create(title="Call mom")
+        Todo.objects.create(title="Walk the dog")
+
     return application
+
+
 
